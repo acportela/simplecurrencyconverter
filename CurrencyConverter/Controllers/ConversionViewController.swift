@@ -10,9 +10,15 @@ import UIKit
 
 class ConversionViewController: UIViewController {
 
+    let conversionView = ConversionView()
+    
+    override func loadView() {
+        self.view = conversionView
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Conversion"
+        self.title = "Currency Converter"
     }
 
 }
