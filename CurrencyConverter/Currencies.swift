@@ -6,7 +6,7 @@
 //  Copyright © 2019 Antonio Rodrigues. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 enum Currencies: String {
     
@@ -43,6 +43,16 @@ enum Currencies: String {
     case `try`
     case usd
     case zar
+    
+    var associatedImage: UIImage {
+        
+        guard let image = UIImage(named: self.rawValue) else {
+            fatalError("There is no image on for this case in assets")
+        }
+        
+        return image
+        
+    }
     
     var description: String {
         

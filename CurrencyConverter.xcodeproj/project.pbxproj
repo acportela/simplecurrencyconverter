@@ -143,6 +143,7 @@
 				D6E3A12B22276BD3004965DE /* Frameworks */,
 				D6E3A12C22276BD3004965DE /* Resources */,
 				732B9CB9239C159BF6CB6F63 /* [CP] Embed Pods Frameworks */,
+				D6B0B2CA222AC55500208AD8 /* SwiftLint */,
 			);
 			buildRules = (
 			);
@@ -277,6 +278,24 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CurrencyConverter/Pods-CurrencyConverter-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		D6B0B2CA222AC55500208AD8 /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
 		};
 		D95B96EF46D2F639A5D6CC4A /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
