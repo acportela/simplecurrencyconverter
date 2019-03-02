@@ -14,18 +14,18 @@ public protocol Coordinator: class {
 
 class AppCoordinator: Coordinator {
     
-    let window: UIWindow
+    let rootViewController: UINavigationController
     
     let conversionViewController = ConversionViewController()
-    
-    init(rootWindow: UIWindow) {
-        self.window = rootWindow
+
+    init(rootViewController: UINavigationController) {
+        self.rootViewController = rootViewController
+        self.rootViewController.navigationBar.prefersLargeTitles = true
     }
     
     func start() {
         
-        window.rootViewController = conversionViewController
-        window.makeKeyAndVisible()
+        rootViewController.viewControllers = [conversionViewController]
         
     }
     
