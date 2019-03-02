@@ -2,7 +2,7 @@ disabled_rules:
   - trailing_whitespace
 
 included:
-  - weatherapp
+  - CurrencyConverter
 
 excluded:
   - Pods
