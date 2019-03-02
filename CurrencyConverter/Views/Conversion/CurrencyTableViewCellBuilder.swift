@@ -22,7 +22,7 @@ extension CurrencyTableViewCellBuilder: TableViewCellBuilder {
     
     public var cellHeight: CGFloat {
         
-        return 90
+        return 80
         
     }
     
