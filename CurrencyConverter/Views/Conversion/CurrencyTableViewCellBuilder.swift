@@ -12,6 +12,8 @@ public final class CurrencyTableViewCellBuilder {
     
     var config: CurrencyTableViewCell.Configuration
     
+    var cell: CurrencyTableViewCell?
+    
     init(config: CurrencyTableViewCell.Configuration) {
         self.config = config
     }
@@ -40,12 +42,19 @@ extension CurrencyTableViewCellBuilder: TableViewCellBuilder {
         
         cell.setup(with: config)
         
+        self.cell = cell
+        
         return cell
         
     }
     
+    public func tableViewDidSelectCell(_ tableView: UITableView) {
+        cell?.valueInput.isUserInteractionEnabled = true
+        cell?.valueInput.becomeFirstResponder()
+    }
+    
     public func tableViewShouldSelectCell(_ tableView: UITableView) -> Bool {
-        return false
+        return true
     }
 
 }

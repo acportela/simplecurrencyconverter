@@ -32,14 +32,15 @@ class CurrencyTableViewCell: UITableViewCell {
         return view
     }()
     
-    private lazy var valueInput: UITextField = {
+    lazy var valueInput: UITextField = {
         let view = UITextField()
         
         view.textColor = .black
         view.textAlignment = .right
-        view.font = UIFont.systemFont(ofSize: 17, weight: .medium)
-        
-        
+        view.font = UIFont.systemFont(ofSize: 19, weight: .medium)
+        view.text = "0"
+        view.keyboardType = .decimalPad
+        view.isUserInteractionEnabled = false
         return view
         
     }()
@@ -124,7 +125,9 @@ extension CurrencyTableViewCell: ViewCodingProtocol {
     
     func configureViews() {
         backgroundColor = .white
-        updateInput(value: "0")
+        selectionStyle = .none
+        valueInput.delegate = self
+        valueInput.addTarget(self, action: #selector(editingEnded), for: .editingDidEnd)
     }
     
 }
@@ -140,6 +143,33 @@ extension CurrencyTableViewCell {
         self.countryImage.image = configuration.currency.associatedImage
         self.code.text = configuration.currency.rawValue.uppercased()
         self.name.text = configuration.currency.description
+        
+    }
+    
+}
+
+extension CurrencyTableViewCell {
+    
+    @objc
+    func editingEnded() {
+        valueInput.isUserInteractionEnabled = false
+    }
+    
+}
+
+extension CurrencyTableViewCell: UITextFieldDelegate {
+    
+    func textField(_ textField: UITextField,
+                   shouldChangeCharactersIn range: NSRange,
+                   replacementString string: String) -> Bool {
+        //TODO - Check for lentgh and number of decimal points
+        return true
+        
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        return true
         
     }
     

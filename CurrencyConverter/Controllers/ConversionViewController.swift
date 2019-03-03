@@ -14,6 +14,20 @@ class ConversionViewController: UIViewController {
     
     var dataSource: TableViewDataSource?
     
+    let service = RatesService()
+    
+    var baseCurrency: Currency = .usd {
+        didSet {
+            //update all cells input value
+        }
+    }
+    
+    var ratesResponse: RatesResponse? {
+        didSet {
+            //update all cells input value
+        }
+    }
+    
     override func loadView() {
         self.view = conversionView
     }
@@ -31,12 +45,42 @@ class ConversionViewController: UIViewController {
             return CurrencyTableViewCellBuilder(config: config)
         }
         
-        let section = StaticSection(cellBuilders: builders)
+        let section = CurrencyListSection(cellBuilders: builders)
         
-        dataSource = TableViewDataSource(sections: [section], tableView: conversionView.tableView)
+        dataSource = TableViewDataSource(sections: [section],
+                                         tableView: conversionView.tableView)
         
         conversionView.tableView.reloadData()
         
+    }
+    
+    func scheduleRequest() {
+        Timer.scheduledTimer(timeInterval: 1,
+                             target: self,
+                             selector: #selector(fetchRates),
+                             userInfo: nil,
+                             repeats: true)
+    }
+    
+    @objc
+    func fetchRates() {
+        
+        service.fetchLatestRates(for: baseCurrency) { [weak self] result in
+            
+            switch result {
+                
+            case .success(let response):
+                
+                if response.base == self?.baseCurrency.rawValue.uppercased() {
+                    self?.ratesResponse = response
+                }
+                
+            case .failure:
+                //TODO
+                break
+            }
+            
+        }
     }
     
 }
