@@ -1,5 +1,5 @@
 //
-//  Currencies.swift
+//  Currency.swift
 //  CurrencyConverter
 //
 //  Created by Antonio Rodrigues on 2/28/19.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-enum Currencies: String {
+enum Currency: String, CaseIterable {
     
     case aud
     case bgn
@@ -44,15 +44,7 @@ enum Currencies: String {
     case usd
     case zar
     
-    var associatedImage: UIImage {
-        
-        guard let image = UIImage(named: self.rawValue) else {
-            fatalError("There is no image on for this case in assets")
-        }
-        
-        return image
-        
-    }
+    var associatedImage: UIImage? { return UIImage(named: self.rawValue) }
     
     var description: String {
         

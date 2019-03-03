@@ -20,7 +20,7 @@ class CurrencyTableViewCell: UITableViewCell {
         let view = UILabel()
         view.textColor = .black
         view.textAlignment = .left
-        view.font = UIFont.systemFont(ofSize: 15, weight: .semibold)
+        view.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
         return view
     }()
     
@@ -37,14 +37,8 @@ class CurrencyTableViewCell: UITableViewCell {
         
         view.textColor = .black
         view.textAlignment = .right
-        view.adjustsFontSizeToFitWidth = true
-        view.minimumFontSize = 10
-        view.font = UIFont.systemFont(ofSize: 15, weight: .medium)
+        view.font = UIFont.systemFont(ofSize: 17, weight: .medium)
         
-        let attributes: [NSAttributedString.Key: Any] = [
-            NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue
-        ]
-        view.attributedText = NSAttributedString(string: "0", attributes: attributes)
         
         return view
         
@@ -71,7 +65,8 @@ class CurrencyTableViewCell: UITableViewCell {
     public func updateInput(value: String) {
         
         let attributes: [NSAttributedString.Key: Any] = [
-            NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue
+            NSAttributedString.Key.underlineStyle: NSUnderlineStyle.thick.rawValue,
+            NSAttributedString.Key.underlineColor: UIColor.lightGray
         ]
         valueInput.attributedText = NSAttributedString(string: value, attributes: attributes)
         
@@ -80,6 +75,11 @@ class CurrencyTableViewCell: UITableViewCell {
     public init(frame: CGRect) {
         super.init(style: .default, reuseIdentifier: type(of: self).reusableIdentifier)
         self.frame = frame
+        setupViewConfiguration()
+    }
+    
+    public override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupViewConfiguration()
     }
     
@@ -106,23 +106,25 @@ extension CurrencyTableViewCell: ViewCodingProtocol {
     func setupConstraints() {
         
         countryImage.snp.makeConstraints { make in
-            make.height.width.equalTo(64)
+            make.height.width.equalTo(56)
             make.centerY.equalToSuperview()
-            make.leading.equalToSuperview().offset(8)
+            make.leading.equalToSuperview()
         }
         
         name.setContentCompressionResistancePriority(.required, for: .horizontal)
         
         contentStackView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(8)
-            make.trailing.bottom.equalToSuperview().inset(8)
-            make.leading.equalTo(countryImage.snp.trailing).offset(8)
+            make.bottom.equalToSuperview().inset(8)
+            make.trailing.equalToSuperview()
+            make.leading.equalTo(countryImage.snp.trailing).offset(16)
         }
         
     }
     
     func configureViews() {
         backgroundColor = .white
+        updateInput(value: "0")
     }
     
 }
@@ -130,7 +132,7 @@ extension CurrencyTableViewCell: ViewCodingProtocol {
 extension CurrencyTableViewCell {
     
     struct Configuration {
-        let currency: Currencies
+        let currency: Currency
     }
     
     func setup(with configuration: Configuration) {

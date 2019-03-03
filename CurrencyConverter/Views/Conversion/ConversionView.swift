@@ -11,7 +11,7 @@ import SnapKit
 
 class ConversionView: UIView {
     
-    private lazy var tableView: UITableView = {
+    lazy var tableView: UITableView = {
         let view = UITableView()
         view.separatorStyle = .none
         return view
@@ -37,7 +37,10 @@ extension ConversionView: ViewCodingProtocol {
     func setupConstraints() {
         
         tableView.snp.makeConstraints { make in
-            make.edges.equalTo(safeAreaLayoutGuide.snp.margins)
+            make.top.equalTo(safeAreaLayoutGuide.snp.topMargin)
+            make.bottom.equalTo(safeAreaLayoutGuide.snp.bottomMargin)
+            make.left.equalTo(safeAreaLayoutGuide.snp.leftMargin).offset(16)
+            make.right.equalTo(safeAreaLayoutGuide.snp.rightMargin).inset(16)
         }
         
     }
