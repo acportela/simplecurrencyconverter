@@ -47,7 +47,8 @@ class ConversionViewController: UIViewController {
         
         super.viewDidLoad()
         
-        self.title = "Currency Converter"
+        self.title = "Simple Converter"
+        
         setupTableView(firstUse: true)
     
         scheduleRequest()
@@ -164,9 +165,24 @@ extension ConversionViewController {
                     self?.ratesResponse = response
                 }
                 
+            case .failure(let error as Errors) where error == .connectivity:
+                
+                if self?.presentedViewController == nil {
+                    let alert = UIAlertController(title: Constants.UserInteractions.connectionErrorTitle,
+                                                  message: Constants.UserInteractions.connectionError,
+                                                  positiveActionTitle: Constants.UserInteractions.tryAgain)
+                    self?.present(alert, animated: true, completion: nil)
+                }
+            
             case .failure:
-                //TODO
-                break
+                
+                if self?.presentedViewController == nil {
+                    let alert = UIAlertController(title: Constants.UserInteractions.genericErrorTitle,
+                                                  message: Constants.UserInteractions.genericError,
+                                                  positiveActionTitle: Constants.UserInteractions.tryAgain)
+                    self?.present(alert, animated: true, completion: nil)
+                }
+                
             }
             
         }

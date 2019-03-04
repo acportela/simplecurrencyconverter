@@ -26,7 +26,7 @@ class CurrencyTableViewCell: UITableViewCell {
     
     private lazy var name: UILabel = {
         let view = UILabel()
-        view.textColor = .lightGray
+        view.textColor = .gray
         view.textAlignment = .left
         view.font = UIFont.systemFont(ofSize: 12, weight: .light)
         return view

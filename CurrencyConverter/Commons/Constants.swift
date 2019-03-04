@@ -17,10 +17,13 @@ enum Constants {
 
 extension Constants.UserInteractions {
     
-    static let connectionErrorTitle = "No Connection"
+    static let connectionErrorTitle = "No connection"
     static let connectionError = "An active connection is needed in order to fetch the latest rates"
     static let tryAgain = "Try Again"
     
+    static let genericErrorTitle = "Something went wrong"
+    static let genericError = "We're sorry but an error occured. Please try again."
+
 }
 
 extension Constants.BaseURL {

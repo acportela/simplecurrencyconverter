@@ -20,26 +20,12 @@ class CurrencyTableViewCellSpec: QuickSpec {
         
         describe("CurrencyTableViewCell") {
             
-            beforeEach {
-                
-                let frame = CGRect(x: 0, y: 0, width: 320, height: 80)
-                
-                sut = CurrencyTableViewCell(frame: frame)
-                
-                let config = CurrencyTableViewCell.Configuration(currency: .nzd)
-                
-                sut.setup(with: config)
-                
-                sut.outlineRecursively(color: .red)
-                
-            }
-            
             context("when presenting on screen") {
                 
                 context("with a standard size input") {
                     
                     beforeEach {
-                        sut.updateInput(value: "123434.42")
+                        prepareSutForInput("000.000")
                     }
                     
                     it("must render properly") {
@@ -53,7 +39,7 @@ class CurrencyTableViewCellSpec: QuickSpec {
                 context("with a large size input") {
                     
                     beforeEach {
-                        sut.updateInput(value: "123434123.34212345")
+                        prepareSutForInput("123434.34212")
                     }
                     
                     it("must render properly") {
@@ -63,6 +49,21 @@ class CurrencyTableViewCellSpec: QuickSpec {
                     }
                     
                 }
+                
+            }
+            
+            func prepareSutForInput(_ input: String) {
+                
+                let frame = CGRect(x: 0, y: 0, width: 320, height: 80)
+                
+                sut = CurrencyTableViewCell(frame: frame)
+                
+                let selected: ((Currency) -> Void) = { _ in }
+                let inputChanged: ((String) -> Void) = { _ in }
+                
+                let config = CurrencyTableViewCell.Configuration(currency: .nzd, input: input, selected: selected, inputChanged: inputChanged)
+                
+                sut.setup(with: config)
                 
             }
             

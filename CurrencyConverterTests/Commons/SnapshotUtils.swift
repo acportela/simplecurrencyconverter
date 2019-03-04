@@ -14,30 +14,12 @@ import FBSnapshotTestCase
 import Nimble_Snapshots
 
 func matchSnapshot(named name: String,
-                   tolerance: CGFloat = 0,
                    record: Bool = false) -> Predicate<Snapshotable> {
     
     if record {
         return recordSnapshot(named: name)
     } else {
-        return haveValidSnapshot(named: name, tolerance: tolerance)
-    }
-    
-}
-
-extension UIView {
-    
-    func outlineRecursively(color: UIColor, width: CGFloat = 1) {
-        
-        layer.borderColor = color.cgColor
-        layer.borderWidth = width
-        
-        for view in subviews {
-            
-            view.outlineRecursively(color: color, width: width)
-            
-        }
-        
+        return haveValidSnapshot(named: name, tolerance: 0)
     }
     
 }

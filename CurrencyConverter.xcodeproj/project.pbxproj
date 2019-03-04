@@ -16,6 +16,9 @@
 		D6140283222C4E0900DA2570 /* RatesClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6140282222C4E0900DA2570 /* RatesClient.swift */; };
 		D6140286222C4FDB00DA2570 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6140285222C4FDB00DA2570 /* Constants.swift */; };
 		D6140288222C52E800DA2570 /* RatesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6140287222C52E800DA2570 /* RatesService.swift */; };
+		D644057A222DC83000707C41 /* ConversionViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6440579222DC83000707C41 /* ConversionViewControllerSpec.swift */; };
+		D644057C222DE47000707C41 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D644057B222DE47000707C41 /* UIView+Extension.swift */; };
+		D644057E222DE9E400707C41 /* UIAlertViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D644057D222DE9E400707C41 /* UIAlertViewController+Extension.swift */; };
 		D6B0B2D0222AC77800208AD8 /* ConversionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B0B2CF222AC77800208AD8 /* ConversionViewController.swift */; };
 		D6B0B2D7222AD65A00208AD8 /* TableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B0B2D6222AD65A00208AD8 /* TableViewDataSource.swift */; };
 		D6B0B2D9222AD69500208AD8 /* TableViewSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B0B2D8222AD69500208AD8 /* TableViewSection.swift */; };
@@ -57,6 +60,9 @@
 		D6140282222C4E0900DA2570 /* RatesClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatesClient.swift; sourceTree = "<group>"; };
 		D6140285222C4FDB00DA2570 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		D6140287222C52E800DA2570 /* RatesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatesService.swift; sourceTree = "<group>"; };
+		D6440579222DC83000707C41 /* ConversionViewControllerSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversionViewControllerSpec.swift; sourceTree = "<group>"; };
+		D644057B222DE47000707C41 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		D644057D222DE9E400707C41 /* UIAlertViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertViewController+Extension.swift"; sourceTree = "<group>"; };
 		D6B0B2CF222AC77800208AD8 /* ConversionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversionViewController.swift; sourceTree = "<group>"; };
 		D6B0B2D6222AD65A00208AD8 /* TableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewDataSource.swift; sourceTree = "<group>"; };
 		D6B0B2D8222AD69500208AD8 /* TableViewSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewSection.swift; sourceTree = "<group>"; };
@@ -113,6 +119,7 @@
 			isa = PBXGroup;
 			children = (
 				D6B0B2EC222B05E800208AD8 /* SnapshotUtils.swift */,
+				D644057B222DE47000707C41 /* UIView+Extension.swift */,
 			);
 			path = Commons;
 			sourceTree = "<group>";
@@ -138,8 +145,17 @@
 			isa = PBXGroup;
 			children = (
 				D6140285222C4FDB00DA2570 /* Constants.swift */,
+				D644057D222DE9E400707C41 /* UIAlertViewController+Extension.swift */,
 			);
 			path = Commons;
+			sourceTree = "<group>";
+		};
+		D6440578222DC81300707C41 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				D6440579222DC83000707C41 /* ConversionViewControllerSpec.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		D6B0B2D1222ACD8700208AD8 /* Supporting Files */ = {
@@ -256,6 +272,7 @@
 		D6E3A14822276E24004965DE /* CurrencyConverterTests */ = {
 			isa = PBXGroup;
 			children = (
+				D6440578222DC81300707C41 /* Controllers */,
 				D6140276222C197000DA2570 /* Models */,
 				D6E3A14B22276E24004965DE /* Info.plist */,
 				D6140275222C193A00DA2570 /* Commons */,
@@ -510,6 +527,7 @@
 				D614027A222C4C7D00DA2570 /* Result.swift in Sources */,
 				D6B0B2D7222AD65A00208AD8 /* TableViewDataSource.swift in Sources */,
 				D6B0B2D0222AC77800208AD8 /* ConversionViewController.swift in Sources */,
+				D644057E222DE9E400707C41 /* UIAlertViewController+Extension.swift in Sources */,
 				D6B0B2D9222AD69500208AD8 /* TableViewSection.swift in Sources */,
 				D6140283222C4E0900DA2570 /* RatesClient.swift in Sources */,
 				D6EB5E012228C7270049455F /* Currency.swift in Sources */,
@@ -527,7 +545,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				D6B0B2ED222B05E800208AD8 /* SnapshotUtils.swift in Sources */,
+				D644057A222DC83000707C41 /* ConversionViewControllerSpec.swift in Sources */,
 				D6140278222C198400DA2570 /* CurrenciesSpec.swift in Sources */,
+				D644057C222DE47000707C41 /* UIView+Extension.swift in Sources */,
 				D6B0B2EB222B052200208AD8 /* CurrencyTableViewCellSpec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
