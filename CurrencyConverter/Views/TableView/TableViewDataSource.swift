@@ -78,14 +78,4 @@ extension TableViewDataSource: UITableViewDelegate {
         
     }
     
-    public func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-        
-        if !section(at: indexPath).tableViewCell(tableView, shouldSelectCellAt: indexPath) {
-            return nil
-        }
-        
-        return indexPath
-        
-    }
-    
 }

@@ -38,7 +38,6 @@ class CurrencyTableViewCell: UITableViewCell {
         view.textColor = .black
         view.textAlignment = .right
         view.font = UIFont.systemFont(ofSize: 19, weight: .medium)
-        view.text = "0"
         view.keyboardType = .decimalPad
         view.isUserInteractionEnabled = false
         return view
@@ -128,6 +127,23 @@ extension CurrencyTableViewCell: ViewCodingProtocol {
         selectionStyle = .none
         valueInput.delegate = self
         valueInput.addTarget(self, action: #selector(editingEnded), for: .editingDidEnd)
+        valueInput.inputAccessoryView = getConfiguredToolBar()
+    }
+    
+    private func getConfiguredToolBar() -> UIToolbar {
+        
+        let toolbar = UIToolbar()
+        
+        let doneItem =
+            UIBarButtonItem(barButtonSystemItem: .done,
+                            target: self,
+                            action: #selector(onDoneAction))
+        
+        toolbar.items = [doneItem]
+        toolbar.sizeToFit()
+        
+        return toolbar
+        
     }
     
 }
@@ -136,6 +152,12 @@ extension CurrencyTableViewCell {
     
     struct Configuration {
         let currency: Currency
+        let currentInput: String?
+        
+        init(currency: Currency, input: String? = nil) {
+            self.currency = currency
+            self.currentInput = input
+        }
     }
     
     func setup(with configuration: Configuration) {
@@ -143,6 +165,7 @@ extension CurrencyTableViewCell {
         self.countryImage.image = configuration.currency.associatedImage
         self.code.text = configuration.currency.rawValue.uppercased()
         self.name.text = configuration.currency.description
+        self.valueInput.text = configuration.currentInput
         
     }
     
@@ -155,6 +178,11 @@ extension CurrencyTableViewCell {
         valueInput.isUserInteractionEnabled = false
     }
     
+    @objc
+    private func onDoneAction() {
+        valueInput.resignFirstResponder()
+    }
+    
 }
 
 extension CurrencyTableViewCell: UITextFieldDelegate {
@@ -162,12 +190,18 @@ extension CurrencyTableViewCell: UITextFieldDelegate {
     func textField(_ textField: UITextField,
                    shouldChangeCharactersIn range: NSRange,
                    replacementString string: String) -> Bool {
-        //TODO - Check for lentgh and number of decimal points
-        return true
         
-    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if string.isEmpty { return true }
+        
+        guard let text = textField.text else {
+            return true
+        }
+        
+        if text.count == 20 { return false }
+        
+        if text.contains("."), string == "." { return false }
+        
+        if text.isEmpty, string == "0" { return false }
         
         return true
         

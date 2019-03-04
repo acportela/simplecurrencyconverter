@@ -25,9 +25,7 @@ public protocol TableViewSection {
 public extension TableViewSection {
     
     func tableViewCell(_ tableView: UITableView, didSelectCellAt indexPath: IndexPath) {
-        
         tableView.deselectRow(at: indexPath, animated: true)
-        
     }
     
 }

@@ -16,7 +16,7 @@ class ConversionViewController: UIViewController {
     
     let service = RatesService()
     
-    var baseCurrency: Currency = .usd {
+    var baseCurrency: Currency = .aud {
         didSet {
             //update all cells input value
         }
@@ -25,6 +25,7 @@ class ConversionViewController: UIViewController {
     var ratesResponse: RatesResponse? {
         didSet {
             //update all cells input value
+            updateValues()
         }
     }
     
@@ -36,13 +37,22 @@ class ConversionViewController: UIViewController {
         super.viewDidLoad()
         self.title = "Currency Converter"
         setupTableView()
+        //TODO Replace by scheduleRequest
+        fetchRates()
     }
 
     func setupTableView() {
         
-        let builders = Currency.allCases.map { value -> CurrencyTableViewCellBuilder in
-            let config = CurrencyTableViewCell.Configuration(currency: value)
-            return CurrencyTableViewCellBuilder(config: config)
+        
+        
+        let builders = Currency.allCases.map { currency -> CurrencyTableViewCellBuilder in
+            
+            let config = CurrencyTableViewCell.Configuration(currency: currency)
+            let builder = CurrencyTableViewCellBuilder(config: config)
+            builder.didSelectCallback = { currency in
+                self.baseCurrency = currency
+            }
+            return builder
         }
         
         let section = CurrencyListSection(cellBuilders: builders)
@@ -53,6 +63,14 @@ class ConversionViewController: UIViewController {
         conversionView.tableView.reloadData()
         
     }
+    
+    func updateValues() {
+        
+    }
+    
+}
+
+extension ConversionViewController {
     
     func scheduleRequest() {
         Timer.scheduledTimer(timeInterval: 1,
