@@ -20,6 +20,8 @@ public protocol TableViewSection {
     func tableViewCell(_ tableView: UITableView, shouldSelectCellAt indexPath: IndexPath) -> Bool
     func tableViewCell(_ tableView: UITableView, didSelectCellAt indexPath: IndexPath)
     
+    func updateCellBuilders(range: Range<Int>, by builders: [TableViewCellBuilder])
+    
 }
 
 public extension TableViewSection {

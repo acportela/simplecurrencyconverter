@@ -58,9 +58,13 @@ class CurrencyTableViewCell: UITableViewCell {
         view.distribution = .fill
         view.alignment = .center
         view.axis = .horizontal
-        view.spacing = 5
+        view.spacing = 12
         return view
     }()
+    
+    var cellWasSelected: ((Currency) -> Void)?
+    
+    var inputChanged: ((String) -> Void)?
     
     public func updateInput(value: String) {
         
@@ -127,6 +131,7 @@ extension CurrencyTableViewCell: ViewCodingProtocol {
         selectionStyle = .none
         valueInput.delegate = self
         valueInput.addTarget(self, action: #selector(editingEnded), for: .editingDidEnd)
+        valueInput.addTarget(self, action: #selector(editingChanged), for: .editingChanged)
         valueInput.inputAccessoryView = getConfiguredToolBar()
     }
     
@@ -151,12 +156,22 @@ extension CurrencyTableViewCell: ViewCodingProtocol {
 extension CurrencyTableViewCell {
     
     struct Configuration {
+        
         let currency: Currency
         let currentInput: String?
+        let selected: ((Currency) -> Void)
+        let inputChanged: ((String) -> Void)
         
-        init(currency: Currency, input: String? = nil) {
+        init(currency: Currency,
+             input: String? = nil,
+             selected: @escaping ((Currency) -> Void),
+             inputChanged: @escaping ((String) -> Void)) {
+            
             self.currency = currency
             self.currentInput = input
+            self.selected = selected
+            self.inputChanged = inputChanged
+            
         }
     }
     
@@ -165,7 +180,11 @@ extension CurrencyTableViewCell {
         self.countryImage.image = configuration.currency.associatedImage
         self.code.text = configuration.currency.rawValue.uppercased()
         self.name.text = configuration.currency.description
-        self.valueInput.text = configuration.currentInput
+        self.cellWasSelected = configuration.selected
+        self.inputChanged = configuration.inputChanged
+        if let current = configuration.currentInput {
+            self.valueInput.text = current
+        }
         
     }
     
@@ -176,6 +195,13 @@ extension CurrencyTableViewCell {
     @objc
     func editingEnded() {
         valueInput.isUserInteractionEnabled = false
+    }
+    
+    @objc
+    func editingChanged() {
+        if let updated = valueInput.text {
+            inputChanged?(updated)
+        }
     }
     
     @objc
@@ -191,17 +217,15 @@ extension CurrencyTableViewCell: UITextFieldDelegate {
                    shouldChangeCharactersIn range: NSRange,
                    replacementString string: String) -> Bool {
         
-        if string.isEmpty { return true }
-        
-        guard let text = textField.text else {
-            return true
+        guard let currentText = textField.text else {
+            return false
         }
         
-        if text.count == 20 { return false }
+        if string.isEmpty { return true }
         
-        if text.contains("."), string == "." { return false }
+        if currentText.count >= 20 { return false }
         
-        if text.isEmpty, string == "0" { return false }
+        if currentText.contains("."), string == "." { return false }
         
         return true
         

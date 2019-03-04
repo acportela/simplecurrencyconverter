@@ -26,6 +26,10 @@ class CurrencyListSection: TableViewSection {
         }
     }
     
+    func updateCellBuilders(range: Range<Int>, by builders: [TableViewCellBuilder]) {
+        cellBuilders.replaceSubrange(range, with: builders)
+    }
+    
     public func cellHeight(forCellAt indexPath: IndexPath, on tableView: UITableView) -> CGFloat {
         
         return cellBuilders[indexPath.row].cellHeight

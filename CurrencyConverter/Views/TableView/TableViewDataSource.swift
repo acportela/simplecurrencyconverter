@@ -10,7 +10,7 @@ import UIKit
 
 public class TableViewDataSource: NSObject {
     
-    private var sections: [TableViewSection] = []
+    var sections: [TableViewSection] = []
     
     public init(sections: [TableViewSection], tableView: UITableView) {
         self.sections = sections

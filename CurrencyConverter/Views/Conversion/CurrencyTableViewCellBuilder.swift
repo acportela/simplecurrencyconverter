@@ -14,8 +14,6 @@ public final class CurrencyTableViewCellBuilder {
     
     var cell: CurrencyTableViewCell?
     
-    var didSelectCallback: ((Currency) -> Void)?
-    
     init(config: CurrencyTableViewCell.Configuration) {
         self.config = config
     }
@@ -53,7 +51,10 @@ extension CurrencyTableViewCellBuilder: TableViewCellBuilder {
     public func tableViewDidSelectCell(_ tableView: UITableView) {
         cell?.valueInput.isUserInteractionEnabled = true
         cell?.valueInput.becomeFirstResponder()
-        didSelectCallback?(config.currency)
+        cell?.cellWasSelected?(config.currency)
+        if let text = cell?.valueInput.text {
+            cell?.inputChanged?(text)
+        }
     }
     
     public func tableViewShouldSelectCell(_ tableView: UITableView) -> Bool {
