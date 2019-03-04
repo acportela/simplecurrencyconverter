@@ -25,7 +25,13 @@ class RatesClient: SessionManager, APIClient {
             
             switch resp {
             case .success(let data):
-                Parser.parse(from: data, callback: callback)
+                
+                do {
+                    let object = try JSONDecoder().decode(T.self, from: data)
+                    callback(.success(object))
+                } catch {
+                    callback(.failure(Errors.parsing))
+                }
                 
             case .failure(let error):
                 callback(.failure(error))

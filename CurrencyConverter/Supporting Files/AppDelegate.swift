@@ -12,7 +12,6 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var coordinator: Coordinator?
 
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -20,13 +19,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let window = UIWindow(frame: UIScreen.main.bounds)
         
         let navigation = UINavigationController()
+        navigation.navigationBar.prefersLargeTitles = true
+        navigation.viewControllers = [ConversionViewController()]
         
         self.window = window
         self.window?.rootViewController = navigation
         self.window?.makeKeyAndVisible()
-        
-        self.coordinator = AppCoordinator(rootViewController: navigation)
-        self.coordinator?.start()
         
         return true
     }
