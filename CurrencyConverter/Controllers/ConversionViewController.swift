@@ -77,13 +77,13 @@ extension ConversionViewController {
             }
             
             let range = 1..<builders.count
+            
             let builders = Array(builders.dropFirst())
           
-            let section = dataSource.sections[0]
-            section.updateCellBuilders(range: range, by: builders)
+            dataSource.sections[0].replaceCellBuilders(at: range, with: builders)
             
-            let indexPaths = range.map { return IndexPath(row: $0, section: 0) }
-            conversionView.tableView.reloadRows(at: indexPaths, with: .automatic)
+            let paths = range.map { return IndexPath(row: $0, section: 0) }
+            conversionView.tableView.reloadRows(at: paths, with: .automatic)
             
         }
     }

@@ -20,7 +20,7 @@ public protocol TableViewSection {
     func tableViewCell(_ tableView: UITableView, shouldSelectCellAt indexPath: IndexPath) -> Bool
     func tableViewCell(_ tableView: UITableView, didSelectCellAt indexPath: IndexPath)
     
-    func updateCellBuilders(range: Range<Int>, by builders: [TableViewCellBuilder])
+    func replaceCellBuilders(at range: Range<Int>, with builders: [TableViewCellBuilder])
     
 }
 
@@ -28,6 +28,10 @@ public extension TableViewSection {
     
     func tableViewCell(_ tableView: UITableView, didSelectCellAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    func replaceCellBuilders(at range: Range<Int>, with builders: [TableViewCellBuilder]) {
+        
     }
     
 }

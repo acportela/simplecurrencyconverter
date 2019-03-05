@@ -26,7 +26,7 @@ class CurrencyListSection: TableViewSection {
         }
     }
     
-    func updateCellBuilders(range: Range<Int>, by builders: [TableViewCellBuilder]) {
+    func replaceCellBuilders(at range: Range<Int>, with builders: [TableViewCellBuilder]) {
         cellBuilders.replaceSubrange(range, with: builders)
     }
     

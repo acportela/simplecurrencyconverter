@@ -22,7 +22,7 @@ extension Constants.UserInteractions {
     static let tryAgain = "Try Again"
     
     static let genericErrorTitle = "Something went wrong"
-    static let genericError = "We're sorry but an error occured. Please try again."
+    static let genericError = "We're sorry, an error occured. Please try again."
 
 }
 

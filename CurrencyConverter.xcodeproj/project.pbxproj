@@ -145,7 +145,6 @@
 			isa = PBXGroup;
 			children = (
 				D6140285222C4FDB00DA2570 /* Constants.swift */,
-				D644057D222DE9E400707C41 /* UIAlertViewController+Extension.swift */,
 			);
 			path = Commons;
 			sourceTree = "<group>";
@@ -223,6 +222,7 @@
 		D6B0B2E8222AF6FA00208AD8 /* Commons */ = {
 			isa = PBXGroup;
 			children = (
+				D644057D222DE9E400707C41 /* UIAlertViewController+Extension.swift */,
 				D6B0B2E3222AEC2900208AD8 /* ViewCodingProtocol.swift */,
 			);
 			path = Commons;
