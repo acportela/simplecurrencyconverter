@@ -70,22 +70,22 @@ extension ConversionViewController {
                                              tableView: conversionView.tableView)
             conversionView.tableView.reloadData()
             
-        } else {
-            
-            guard let dataSource = self.dataSource else {
-                return
-            }
-            
-            let range = 1..<builders.count
-            
-            let builders = Array(builders.dropFirst())
-          
-            dataSource.sections[0].replaceCellBuilders(at: range, with: builders)
-            
-            let paths = range.map { return IndexPath(row: $0, section: 0) }
-            conversionView.tableView.reloadRows(at: paths, with: .automatic)
-            
+            return
         }
+            
+        guard let dataSource = self.dataSource else {
+            return
+        }
+        
+        let range = 1..<builders.count
+        
+        let buildersToUpdate = Array(builders.dropFirst())
+        
+        dataSource.sections[0].replaceCellBuilders(at: range, with: buildersToUpdate)
+        
+        let paths = range.map { return IndexPath(row: $0, section: 0) }
+        conversionView.tableView.reloadRows(at: paths, with: .automatic)
+        
     }
     
     func makeBuilders() -> [CurrencyTableViewCellBuilder] {

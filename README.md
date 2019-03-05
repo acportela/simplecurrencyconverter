@@ -1,1 +1,3 @@
-# Simple Currency Converter
+# Simple Converter
+
+Simple real-time currency converter app

@@ -15,8 +15,8 @@ public protocol TableViewSection {
     func registerCells(in tableView: UITableView)
     
     func cellHeight(forCellAt indexPath: IndexPath, on tableView: UITableView) -> CGFloat
-    func tableViewCell(at indexPath: IndexPath, on tableView: UITableView) -> UITableViewCell
     
+    func tableViewCell(at indexPath: IndexPath, on tableView: UITableView) -> UITableViewCell
     func tableViewCell(_ tableView: UITableView, shouldSelectCellAt indexPath: IndexPath) -> Bool
     func tableViewCell(_ tableView: UITableView, didSelectCellAt indexPath: IndexPath)
     
